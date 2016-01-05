@@ -16,6 +16,7 @@ state: {
     {'id','date','account','payee','memo','type','amount','cleared'}
   ],
   accounts : [
+    // type = ['credit-card','checking','savings','loan','auto-loan','asset']
     {'id','name','openingDate','openingBalance','onBudget','type'}
   ],
   master_categories: [
