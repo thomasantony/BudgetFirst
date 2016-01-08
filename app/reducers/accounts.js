@@ -1,12 +1,12 @@
-import { INSERT_ITEM, UPDATE_ITEM, DELETE_ITEM } from '../actions/items';
+import { INSERT_ACCOUNT, UPDATE_ACCOUNT, DELETE_ACCOUNT } from '../actions/items';
 
 export default function items(state = [], action) {
   switch (action.type) {
-  case INSERT_ITEM:
+  case INSERT_ACCOUNT:
     return state;
-  case UPDATE_ITEM:
+  case UPDATE_ACCOUNT:
     return state;
-  case DELETE_ITEM:
+  case DELETE_ACCOUNT:
     return state;
   default:
     return state;

@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import categories from './categories';
-import items from './items';
+import accounts from './accounts';
+import budget from './budget';
+import ledger from './ledger';
 
 const rootReducer = combineReducers({
-  categories,
-  items
+  accounts,
+  budget,
+  ledger
 });
 
 export default rootReducer;
