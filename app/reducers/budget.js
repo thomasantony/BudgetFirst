@@ -33,8 +33,18 @@ export default function budget(state = {}, action) {
     // return lodash.mapValues(state, (val,period) =>
     //   (period == action.period) ? action.payload : val
     // );
+  // case DELETE_BUDGET_CATEGORY:
+  //   return lodash.pick(state, (_,period) => period != action.period );
   case DELETE_BUDGET_CATEGORY:
-    return lodash.pick(state, (_,period) => period != action.period );
+    // TODO: Fix this to throw error if period doesn't exist
+    if (!state.hasOwnProperty(action.period)) {
+      return state
+    }
+    newCategoryList = state[action.period].filter(cat => cat.category_id !== action.category_id);
+    return {
+      ...state,
+      [action.period]: newCategoryList
+    };
   default:
     return state;
   }

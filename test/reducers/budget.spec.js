@@ -84,7 +84,9 @@ describe('reducers', () => {
           period: '012016',
           category_id: 1
         })
-      ).to.deep.equal({});
+      ).to.deep.equal({
+        '012016': []
+      });
     });
     it('should handle unknown action type', () => {
       expect(budget({}, {
