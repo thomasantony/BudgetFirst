@@ -2,8 +2,8 @@ import path from 'path';
 import webdriver from 'selenium-webdriver';
 import { expect } from 'chai';
 import electronPath from 'electron-prebuilt';
-import homeStyles from '../src/components/Home.module.css';
-import counterStyles from '../src/components/Counter.module.css';
+import homeStyles from '../app/components/Home.module.css';
+import counterStyles from '../app/components/Counter.module.css';
 
 describe('main window', function spec() {
   before((done) => {

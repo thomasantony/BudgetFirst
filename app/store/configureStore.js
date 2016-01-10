@@ -8,16 +8,17 @@ if (process.env.NODE_ENV === 'production') {
 /*
 State tree shape
 
-TODO: Flatten budget state tree?
 state: {
-  ledger: {
+  ledger: [
     // To can also be account name for type:transfer
     // Negative amount = outflow, Positive amount = inflow
-    // type is set to 'transfer' for transfers and creates a second entry automaticlaly
-    id: {'id','date','account','payee','memo','type','amount','cleared'}
-  },
+    // type is set to 'transfer' for transfers and creates a second entry automatically?
+    // not really sure about that part yet
+    {'id','date','type','account','payee','memo','amount','cleared'}
+  ],
+  // type = ['credit-card','checking','savings','loan','auto-loan','asset']
   accounts : [
-    // type = ['credit-card','checking','savings','loan','auto-loan','asset']
+
     {'id','name','openingDate','openingBalance','onBudget','type'}
   ],
   master_categories: [

@@ -1,24 +1,9 @@
-export const CATEGORY_INSERT = 'CATEGORY_INSERT';
-export const CATEGORY_UPDATE = 'CATEGORY_UPDATE';
-export const CATEGORY_DELETE = 'CATEGORY_DELETE';
+import makeActionCreator from './makeActionCreator';
 
-export function insertCategory(category) {
-  return {
-    type: CATEGORY_INSERT,
-    category
-  };
-}
+export const ADD_CATEGORY = 'ADD_CATEGORY';
+export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
+export const DELETE_CATEGORY = 'DELETE_CATEGORY';
 
-export function updateCategory(category) {
-  return {
-    type: CATEGORY_UPDATE,
-    category
-  };
-}
-
-export function deleteCategory(id) {
-  return {
-    type: CATEGORY_DELETE,
-    id
-  };
-}
+export const addCategory = makeActionCreator(ADD_CATEGORY, 'payload')
+export const updateCategory = makeActionCreator(UPDATE_CATEGORY, 'id','payload')
+export const deleteCategory = makeActionCreator(DELETE_CATEGORY, 'id')
