@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import budget from '../../app/reducers/budget';
-import { ADD_BUDGET_PERIOD, UPDATE_BUDGET_PERIOD, DELETE_BUDGET_PERIOD } from '../../app/actions/budget';
+import { ADD_BUDGET_CATEGORY, UPDATE_BUDGET_CATEGORY, DELETE_BUDGET_CATEGORY } from '../../app/actions/budget';
 
 describe('reducers', () => {
   describe('budget', () => {
@@ -29,43 +29,44 @@ describe('reducers', () => {
       }],
     };
     // test action for adding budget period
-    it('should handle ADD_BUDGET_PERIOD with empty state', () => {
+    it('should handle ADD_BUDGET_CATEGORY with empty state', () => {
       expect(
         budget({}, {
-          type: ADD_BUDGET_PERIOD,
+          type: ADD_BUDGET_CATEGORY,
           period: '012016',
-          payload: [{
+          payload: {
             category_id: 1,
             budgeted: 100.00,
             notes: 'notes jan 2016'
-          }]
+          }
         })
       ).to.deep.equal(sample_period_1);
     })
-    it('should handle ADD_BUDGET_PERIOD with non-empty state', () => {
+    it('should handle ADD_BUDGET_CATEGORY with non-empty state', () => {
       expect(
         budget(sample_period_1, {
-          type: ADD_BUDGET_PERIOD,
+          type: ADD_BUDGET_CATEGORY,
           period: '022016',
-          payload: [{
+          payload: {
             category_id: 1,
             budgeted: 200.00,
             notes: 'notes feb 2016'
-          }]
+          }
         })
       ).to.deep.equal(sample_period_2);
     })
     // Update budget period
-    it('should handle UPDATE_BUDGET_PERIOD', () => {
+    it('should handle UPDATE_BUDGET_CATEGORY', () => {
       expect(
         budget(sample_period_1, {
-          type: UPDATE_BUDGET_PERIOD,
+          type: UPDATE_BUDGET_CATEGORY,
           period: '012016',
-          payload: [{
+          category_id: 1,
+          payload: {
             category_id: 1,
             budgeted: 150.00,
             notes: 'notes jan 2016'
-          }]
+          }
         })
       ).to.deep.equal({
         '012016': [{
@@ -76,11 +77,12 @@ describe('reducers', () => {
       });
     });
     // Delete state variable
-    it('should handle DELETE_BUDGET_PERIOD', () => {
+    it('should handle DELETE_BUDGET_CATEGORY', () => {
       expect(
         budget(sample_period_1, {
-          type: DELETE_BUDGET_PERIOD,
-          period: '012016'
+          type: DELETE_BUDGET_CATEGORY,
+          period: '012016',
+          category_id: 1
         })
       ).to.deep.equal({});
     });
