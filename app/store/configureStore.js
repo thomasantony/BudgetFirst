@@ -8,6 +8,7 @@ if (process.env.NODE_ENV === 'production') {
 /*
 State tree shape
 
+TODO: Flatten budget state tree?
 state: {
   ledger: {
     // To can also be account name for type:transfer
@@ -25,11 +26,9 @@ state: {
   categories: [
     {'id','parent_id','name','hidden'}
   ],
-  budget: {
-    'Jan-2016': [
+  budget: [
       // Derive category_balance and outflows from ledger
-      {'category_id','budgeted','notes'}
-    ]
-  }
+      {'period','category_id','budgeted','notes'}
+  ]
 }
 */
