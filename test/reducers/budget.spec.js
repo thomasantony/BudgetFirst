@@ -9,6 +9,7 @@ describe('reducers', () => {
         budget(undefined, {})
       ).to.deep.equal({});
     });
+
     let sample_period_1 = {
       '012016': [{
         category_id: 1,

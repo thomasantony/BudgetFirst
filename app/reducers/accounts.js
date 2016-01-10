@@ -1,21 +1,22 @@
-import { ADD_ACCOUNT, UPDATE_ACCOUNT, DELETE_ACCOUNT } from '../actions/account';
+import { ADD_ACCOUNT, UPDATE_ACCOUNT, DELETE_ACCOUNT } from '../actions/accounts';
 import lodash from 'lodash';
 
-export default function account(state = {}, action) {
+export default function accounts(state = [], action) {
   switch (action.type) {
-  case ADD_ACCOUNT:
+    case ADD_ACCOUNT:
+      let new_id = state.reduce((maxId, account) => Math.max(account.id, maxId), 0) + 1;
+      return [
+        ...state,
+        Object.assign({}, {
+          id: new_id
+        }, action.payload)
+      ]
+    case UPDATE_ACCOUNT:
+      return state.map(acct => (acct.id == action.id) ? action.payload : acct);
 
-    return {...state,
-            [action.period]: action.payload
-           }
-    return state;
-  case UPDATE_ACCOUNT:
-    return lodash.mapValues(state, (val,period) =>
-      (period == action.period) ? action.payload : val
-    );
-  case DELETE_ACCOUNT:
-    return lodash.pick(state, (_,period) => period != action.period );
-  default:
-    return state;
+    case DELETE_ACCOUNT:
+      return state.filter(acct => acct.id != action.id);
+    default:
+      return state;
   }
 }

@@ -12,7 +12,6 @@ export default function budget(state = {}, action) {
               action.payload
             ]
            }
-    return state;
   case UPDATE_BUDGET_CATEGORY:
     // TODO: Fix this to throw error if budget period doesn't exist??
     if (!state.hasOwnProperty(action.period)) {
