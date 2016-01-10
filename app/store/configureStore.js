@@ -9,12 +9,12 @@ if (process.env.NODE_ENV === 'production') {
 State tree shape
 
 state: {
-  ledger: [
+  ledger: {
     // To can also be account name for type:transfer
     // Negative amount = outflow, Positive amount = inflow
     // type is set to 'transfer' for transfers and creates a second entry automaticlaly
-    {'id','date','account','payee','memo','type','amount','cleared'}
-  ],
+    id: {'id','date','account','payee','memo','type','amount','cleared'}
+  },
   accounts : [
     // type = ['credit-card','checking','savings','loan','auto-loan','asset']
     {'id','name','openingDate','openingBalance','onBudget','type'}
@@ -23,12 +23,12 @@ state: {
 
   ],
   categories: [
-    {'id','parent_id','name'}
+    {'id','parent_id','name','hidden'}
   ],
   budget: {
     'Jan-2016': [
       // Derive category_balance and outflows from ledger
-      {'category_id','hidden','budgeted'}
+      {'category_id','budgeted','notes'}
     ]
   }
 }

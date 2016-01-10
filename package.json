@@ -15,8 +15,7 @@
     "start": "better-npm-run start",
     "start-hot": "better-npm-run start-hot",
     "package": "better-npm-run package",
-    "package-all": "npm run package -- --all",
-    "postinstall": "node node_modules/fbjs-scripts/node/check-dev-engines.js package.json"
+    "package-all": "npm run package -- --all"
   },
   "betterScripts": {
     "start": {
@@ -45,13 +44,13 @@
       }
     },
     "test": {
-      "command": "mocha --compilers js:babel/register --recursive --require ./test/setup.js test/**/*.spec.js",
+      "command": "mocha --compilers js:babel-register --recursive --require ./test/setup.js ./test/**/*.spec.js",
       "env": {
         "NODE_ENV": "test"
       }
     },
     "test-e2e": {
-      "command": "mocha --compilers js:babel/register --require ./test/setup.js --require co-mocha ./test/e2e.js",
+      "command": "mocha --compilers js:babel-register --require ./test/setup.js --require co-mocha ./test/e2e.js",
       "env": {
         "NODE_ENV": "test"
       }
@@ -108,12 +107,11 @@
     "eslint-plugin-react": "^3.3.1",
     "express": "^4.13.3",
     "extract-text-webpack-plugin": "^0.9.1",
-    "fbjs-scripts": "^0.5.0",
     "jsdom": "^7.0.2",
     "json-loader": "^0.5.4",
     "leveldown": "^1.4.3",
     "minimist": "^1.2.0",
-    "mocha": "^2.3.0",
+    "mocha": "^2.3.4",
     "node-libs-browser": ">= 0.4.0 <=0.6.0",
     "postcss": "^5.0.11",
     "postcss-modules-extract-imports": "^1.0.0",

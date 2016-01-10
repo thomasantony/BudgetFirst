@@ -1,8 +1,8 @@
-import { INSERT_TRANSACTION, UPDATE_TRANSACTION, DELETE_TRANSACTION } from '../actions/items';
+import { ADD_TRANSACTION, UPDATE_TRANSACTION, DELETE_TRANSACTION } from '../actions/ledger';
 
-export default function items(state = [], action) {
+export default function ledger(state = [], action) {
   switch (action.type) {
-  case INSERT_TRANSACTION:
+  case ADD_TRANSACTION:
     return state;
   case UPDATE_TRANSACTION:
     return state;
