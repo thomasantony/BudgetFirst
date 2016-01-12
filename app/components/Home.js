@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import * as AccountActions from '../actions/accounts'
 // import styles from './Home.module.css';
 
+import AccountList from './AccountList';
 
-export default class Home extends Component {
+class Home extends Component {
+  componentDidMount()
+  {
+    this.props.loadDummyAccounts();
+  }
   render() {
-    // return (
-    //   <div>
-    //     <div classNameName={styles.container}>
-    //       <h2>Home</h2>
-    //       <Link to="/categories">Categories</Link><br/>
-    //       <Link to="/items">Items</Link><br/>
-    //     </div>
-    //   </div>
-    // );
     return (
       <div className="window">
 
@@ -34,24 +33,13 @@ export default class Home extends Component {
               <button className="btn btn-default">
                 <span className="icon icon-cog"></span>
               </button>
-
             </div>
             </div>
         </header>
         <div className="window-content">
           <div className="pane-group">
             <div className="pane pane-sm sidebar">
-              <nav className="nav-group">
-                <h5 className="nav-group-title">Accounts</h5>
-                <span className="nav-group-item">
-                  <span className="icon icon-briefcase"></span>
-                  Checking account
-                </span>
-                <span className="nav-group-item active">
-                  <span className="icon icon-credit-card"></span>
-                  Rewards VISA
-                </span>
-              </nav>
+              <AccountList accounts={this.props.accounts}/>
             </div>
 
             <div className="pane">
@@ -95,3 +83,6 @@ export default class Home extends Component {
     );
   }
 }
+
+export default connect(state => ({accounts: state.accounts}),
+                      (dispatch) => bindActionCreators(AccountActions, dispatch))(Home);
