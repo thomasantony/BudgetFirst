@@ -7,6 +7,7 @@ To run the prototype UI without packaging into an app. First run
     npm install
 
 Then run the following commands in separate terminals
+
     npm run hot-server
     npm run start-hot
 
