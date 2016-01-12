@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 
+// TODO: Make account list show actual balance rather than opening balance
+// TODO: Format account balance
 const AccountList = ({accounts}) => {
   let icons = {
     checking: 'icon-briefcase',
@@ -14,6 +16,9 @@ const AccountList = ({accounts}) => {
           <span className="nav-group-item" key={acct.id}>
             <span className={'icon '+icons[acct.type]}></span>
             {acct.name}
+            <span className='pull-right' style={{color: acct.openingBalance < 0? 'red':'inherit', fontWeight: 'bold'}}>
+              {acct.openingBalance}
+            </span>
           </span>
         )
       }
