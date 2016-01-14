@@ -7,7 +7,7 @@ export default function accounts(state = [], action) {
       return [
         {
           id: 1,
-          name: 'Primary Checking',
+          name: 'My Checking',
           type: 'checking',
           openingDate: '2016-01-01',
           openingBalance: 1000.00,

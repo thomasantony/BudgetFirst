@@ -66,7 +66,7 @@ class Home extends Component {
         </header>
         <div className="window-content">
           <div className="pane-group">
-            <div className="pane pane-sm sidebar">
+            <div className="pane pane-sm sidebar" style={{width:'250px'}}>
               <AccountList title="Budget Accounts" onBudget={true} activeItem={this.state.activeAccountId} onSelect={this.showAccount.bind(this)}/>
               <AccountList title="Off-Budget Accounts" onBudget={false} activeItem={this.state.activeAccountId} onSelect={this.showAccount.bind(this)}/>
               <nav className="nav-group" style={{padding:'10px'}}>
