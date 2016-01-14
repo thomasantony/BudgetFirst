@@ -10,7 +10,7 @@ import AccountList from './AccountList';
 class Home extends Component {
   componentDidMount()
   {
-    this.props.loadDummyAccounts();
+    // this.props.loadDummyAccounts();
   }
   render() {
     return (
@@ -33,7 +33,14 @@ class Home extends Component {
               <button className="btn btn-default">
                 <span className="icon icon-cog"></span>
               </button>
+              <button className="btn btn-default">
+                <span className="icon icon-cog"></span>
+              </button>
             </div>
+            <button className="btn btn-default" onClick={this.props.loadDummyAccounts}>
+              <span className="icon icon-folder icon-text"></span>
+              Load dummy data
+            </button>
             </div>
         </header>
         <div className="window-content">
