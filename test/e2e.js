@@ -36,7 +36,7 @@ describe('main window', function spec() {
 
   it('should open window', async () => {
     const title = await this.driver.getTitle();
-    expect(title).to.equal('Hello Electron React!');
+    expect(title).to.equal('Budget First');
   });
 
   it('should to Counter with click "to Counter" link', async () => {
