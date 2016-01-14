@@ -9,12 +9,15 @@ const onBudgetSelector = (_,props) => props.onBudget
 // Selector that filters out transactions by account id
 const txnSelector = state => state.ledger
 
+const getTransactionsByAccount = (transactions, account_id) => {
+  return transactions.filter((txn) => txn.account_id == account_id)
+}
 export const accountTxnSelector = createSelector(
   txnSelector,
   accountIdSelector,
   (transactions, account_id) => {
     return {
-      transactions: transactions.filter((txn) => txn.account_id == account_id)
+      transactions: getTransactionsByAccount(transactions, account_id)
     }
   }
 );
@@ -27,11 +30,13 @@ export const budgetAccountSelector = createSelector(
 
 export const accountSelector = createSelector(
   budgetAccountSelector,
-  (accounts) => {
+  txnSelector,
+  (accounts, transactions) => {
     return {
       accounts: accounts.map( acct => ({
         ...acct,
-        balance: 0.0  // TODO: Add up all old transactions to openingBalance here
+        balance: getTransactionsByAccount(transactions,acct.id)
+                  .reduce((total,txn) => total + txn.amount, acct.openingBalance)
       })),
     }
   }
