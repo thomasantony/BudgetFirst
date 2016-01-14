@@ -47,9 +47,6 @@ class Home extends Component {
               <button className="btn btn-default">
                 <span className="icon icon-cog"></span>
               </button>
-              <button className="btn btn-default">
-                <span className="icon icon-cog"></span>
-              </button>
             </div>
             <button className="btn btn-default" onClick={this.loadDummy.bind(this)}>
               <span className="icon icon-folder icon-text"></span>
@@ -60,8 +57,8 @@ class Home extends Component {
         <div className="window-content">
           <div className="pane-group">
             <div className="pane pane-sm sidebar">
-              <AccountList title="Budget accounts" onBudget={true} activeItem={this.state.activeAccountId} onSelect={this.showAccount.bind(this)}/>
-              <AccountList title="Off-Budget accounts" onBudget={false} activeItem={this.state.activeAccountId} onSelect={this.showAccount.bind(this)}/>
+              <AccountList title="Budget Accounts" onBudget={true} activeItem={this.state.activeAccountId} onSelect={this.showAccount.bind(this)}/>
+              <AccountList title="Off-Budget Accounts" onBudget={false} activeItem={this.state.activeAccountId} onSelect={this.showAccount.bind(this)}/>
             </div>
 
             <div className="pane">
