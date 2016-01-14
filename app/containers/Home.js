@@ -23,6 +23,16 @@ class Home extends Component {
     this.props.loadDummyAccounts();
     this.props.loadDummyTransactions();
   }
+  addAccount()
+  {
+    this.props.addAccount({
+      name: 'Dummy '+Math.floor(100*Math.random()),
+      type: 'checking',
+      openingDate: '2016-01-15',
+      openingBalance: 5000*Math.random()-2500,
+      onBudget: true
+    })
+  }
   showAccount(account_id)
   {
     this.setState({activeAccountId: account_id});
@@ -59,6 +69,12 @@ class Home extends Component {
             <div className="pane pane-sm sidebar">
               <AccountList title="Budget Accounts" onBudget={true} activeItem={this.state.activeAccountId} onSelect={this.showAccount.bind(this)}/>
               <AccountList title="Off-Budget Accounts" onBudget={false} activeItem={this.state.activeAccountId} onSelect={this.showAccount.bind(this)}/>
+              <nav className="nav-group" style={{padding:'10px'}}>
+                <button className="btn btn-default" onClick={this.addAccount.bind(this)}>
+                  <span className="icon icon-plus icon-text"></span>
+                  Add Account
+                </button>
+              </nav>
             </div>
 
             <div className="pane">

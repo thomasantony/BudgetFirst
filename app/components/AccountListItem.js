@@ -11,7 +11,7 @@ const AccountListItem = ({account, active, onSelect}) => {
       <span className={'icon icon-'+icons[type]}></span>
       {name}
       <span className='pull-right' style={{color: openingBalance < 0? 'red':'inherit', fontWeight: 'bold'}}>
-        {openingBalance}
+        {(openingBalance).toFixed(2)}
       </span>
     </span>
   )

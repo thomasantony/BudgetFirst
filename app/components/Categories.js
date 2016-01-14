@@ -28,7 +28,6 @@ class Categories extends Component {
   }
   render() {
     const { insertCategory, updateCategory, deleteCategory, categories } = this.props;
-    console.log(categories)
     return (
       <div style={{width:'800px'}}>
         <div className={{position: 'absolute'}}>

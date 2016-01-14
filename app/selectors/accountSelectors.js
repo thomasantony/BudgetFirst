@@ -22,17 +22,12 @@ export const accountTxnSelector = createSelector(
 export const budgetAccountSelector = createSelector(
   rawAccountSelector,
   onBudgetSelector,
-  (accounts, onBudget) => {
-    console.log(onBudget)
-    console.log(accounts)
-    return accounts.filter(acct => acct.onBudget == onBudget)
-  }
+  (accounts, onBudget) => accounts.filter(acct => acct.onBudget == onBudget)
 )
 
 export const accountSelector = createSelector(
   budgetAccountSelector,
   (accounts) => {
-    console.log(accounts)
     return {
       accounts: accounts.map( acct => ({
         ...acct,
