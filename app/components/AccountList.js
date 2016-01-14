@@ -3,7 +3,7 @@ import { Pane, NavGroup, NavTitle, NavGroupItem } from 'react-photonkit';
 import AccountListItem from './AccountListItem';
 // TODO: Make account list show actual balance rather than opening balance
 // TODO: Format account balance
-const AccountList = ({accounts}) => {
+const AccountList = ({accounts, activeItem, onSelect}) => {
   // <NavGroup activeKey={1}>
   //     <NavTitle>Accounts</NavTitle>
   //     {
@@ -17,7 +17,7 @@ const AccountList = ({accounts}) => {
     <nav className="nav-group">
       <h5 className="nav-group-title">Accounts</h5>
       {
-        accounts.map((acct) => <AccountListItem key={acct.id} account={acct}/> )
+        accounts.map((acct) => <AccountListItem key={acct.id} account={acct} onSelect={onSelect} active={activeItem == acct.id}/> )
       }
     </nav>
   )

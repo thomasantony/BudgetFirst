@@ -3,14 +3,29 @@ import { Link } from 'react-router';
 import {bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import * as AccountActions from '../actions/accounts'
+import * as LedgerActions from '../actions/ledger'
 // import styles from './Home.module.css';
+import { createSelector } from 'reselect'
+// import accountTxnSelector from '../selectors/transactionSelectors';
+import {accountSelector} from '../selectors/accountSelectors';
 
-import AccountList from './AccountList';
+import AccountList from '../components/AccountList';
+import TransactionList from '../components/TransactionList';
 
 class Home extends Component {
-  componentDidMount()
+  constructor(props)
   {
-    // this.props.loadDummyAccounts();
+    super(props);
+    this.state = {activeAccountId: 2};
+  }
+  loadDummy()
+  {
+    this.props.loadDummyAccounts();
+    this.props.loadDummyTransactions();
+  }
+  showAccount(account_id)
+  {
+    this.setState({activeAccountId: account_id});
   }
   render() {
     return (
@@ -37,7 +52,7 @@ class Home extends Component {
                 <span className="icon icon-cog"></span>
               </button>
             </div>
-            <button className="btn btn-default" onClick={this.props.loadDummyAccounts}>
+            <button className="btn btn-default" onClick={this.loadDummy.bind(this)}>
               <span className="icon icon-folder icon-text"></span>
               Load dummy data
             </button>
@@ -46,43 +61,11 @@ class Home extends Component {
         <div className="window-content">
           <div className="pane-group">
             <div className="pane pane-sm sidebar">
-              <AccountList accounts={this.props.accounts}/>
+              <AccountList accounts={this.props.accounts} activeItem={this.state.activeAccountId} onSelect={this.showAccount.bind(this)}/>
             </div>
 
             <div className="pane">
-              <table className="table-striped">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Payee</th>
-                    <th>Category</th>
-                    <th>Memo</th>
-                    <th>Outflow</th>
-                    <th>Inflow</th>
-                    <th>Balance</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>01/09/16</td>
-                    <td>T-Mobile</td>
-                    <td>Phone/Internet</td>
-                    <td></td>
-                    <td>60.00</td>
-                    <td></td>
-                    <td style={{color:'red'}}>-60.00</td>
-                  </tr>
-                  <tr>
-                    <td>01/15/16</td>
-                    <td>Transfer: Checking Account</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>60.00</td>
-                    <td>0.00</td>
-                  </tr>
-                </tbody>
-              </table>
+              <TransactionList account_id={this.state.activeAccountId}/>
             </div>
           </div>
         </div>
@@ -91,5 +74,5 @@ class Home extends Component {
   }
 }
 
-export default connect(state => ({accounts: state.accounts}),
-                      (dispatch) => bindActionCreators(AccountActions, dispatch))(Home);
+export default connect(accountSelector,
+                      (dispatch) => bindActionCreators({...AccountActions,...LedgerActions}, dispatch))(Home);

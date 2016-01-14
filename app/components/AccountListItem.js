@@ -1,5 +1,5 @@
 import React from 'react';
-const AccountListItem = ({account}) => {
+const AccountListItem = ({account, active, onSelect}) => {
   let {name, type, openingBalance} = account;
   let icons = {
     checking: 'briefcase',
@@ -7,7 +7,7 @@ const AccountListItem = ({account}) => {
     autoLoan: 'rocket',  // why not? ^_^
   }
   return (
-    <span className="nav-group-item">
+    <span className={'nav-group-item '+(active ? 'active': '')} onClick={onSelect.bind(null,account.id)}>
       <span className={'icon icon-'+icons[type]}></span>
       {name}
       <span className='pull-right' style={{color: openingBalance < 0? 'red':'inherit', fontWeight: 'bold'}}>
