@@ -30,7 +30,6 @@ class Home extends Component {
   render() {
     return (
       <div className="window">
-
         <header className="toolbar toolbar-header">
           <h1 className="title">Budget First</h1>
 
@@ -61,11 +60,12 @@ class Home extends Component {
         <div className="window-content">
           <div className="pane-group">
             <div className="pane pane-sm sidebar">
-              <AccountList accounts={this.props.accounts} activeItem={this.state.activeAccountId} onSelect={this.showAccount.bind(this)}/>
+              <AccountList title="Budget accounts" onBudget={true} activeItem={this.state.activeAccountId} onSelect={this.showAccount.bind(this)}/>
+              <AccountList title="Off-Budget accounts" onBudget={false} activeItem={this.state.activeAccountId} onSelect={this.showAccount.bind(this)}/>
             </div>
 
             <div className="pane">
-              <TransactionList account_id={this.state.activeAccountId}/>
+              <TransactionList accountId={this.state.activeAccountId}/>
             </div>
           </div>
         </div>
@@ -74,5 +74,5 @@ class Home extends Component {
   }
 }
 
-export default connect(accountSelector,
+export default connect(null,
                       (dispatch) => bindActionCreators({...AccountActions,...LedgerActions}, dispatch))(Home);

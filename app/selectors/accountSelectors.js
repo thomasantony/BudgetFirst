@@ -2,13 +2,16 @@ import { createSelector } from 'reselect'
 
 const rawAccountSelector = state => state.accounts
 
+// Prop selectors
+const accountIdSelector = (_,props) => props.accountId
+const onBudgetSelector = (_,props) => props.onBudget
 
 // Selector that filters out transactions by account id
 const txnSelector = state => state.ledger
-const acctIdSelector = (_,props) => props.account_id
+
 export const accountTxnSelector = createSelector(
   txnSelector,
-  acctIdSelector,
+  accountIdSelector,
   (transactions, account_id) => {
     return {
       transactions: transactions.filter((txn) => txn.account_id == account_id)
@@ -16,11 +19,22 @@ export const accountTxnSelector = createSelector(
   }
 );
 
-export const accountSelector = createSelector(
+export const budgetAccountSelector = createSelector(
   rawAccountSelector,
-  (allAccounts) => {
+  onBudgetSelector,
+  (accounts, onBudget) => {
+    console.log(onBudget)
+    console.log(accounts)
+    return accounts.filter(acct => acct.onBudget == onBudget)
+  }
+)
+
+export const accountSelector = createSelector(
+  budgetAccountSelector,
+  (accounts) => {
+    console.log(accounts)
     return {
-      accounts: allAccounts.map( acct => ({
+      accounts: accounts.map( acct => ({
         ...acct,
         balance: 0.0  // TODO: Add up all old transactions to openingBalance here
       })),
