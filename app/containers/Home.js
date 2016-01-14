@@ -16,7 +16,7 @@ class Home extends Component {
   constructor(props)
   {
     super(props);
-    this.state = {activeAccountId: 1};
+    this.state = {activeAccountId: -1};
   }
   loadDummy()
   {
@@ -32,6 +32,32 @@ class Home extends Component {
       openingBalance: 5000*Math.random()-2500,
       onBudget: true
     })
+  }
+  onAddTransfer()
+  {
+    alert('Nothing to see here!!')
+  }
+  onAddTxn()
+  {
+    if(this.state.activeAccountId > 0)
+    {
+      this.props.addTransaction(
+        {
+          date: '2016-01-09',
+          type: 'regular',
+          account_id: this.state.activeAccountId,
+          payee: 'Random payee',
+          // category_id: 2,     // TODO: Make category a derived field
+          category: 'Blah blah',
+          memo: '¯\_(ツ)_/¯',
+          amount: Math.random()*1000-500,
+          cleared: true
+        }
+      );
+    }else{
+      // Safeguard
+      console.log('Add an account first.')
+    }
   }
   showAccount(account_id)
   {
@@ -78,7 +104,11 @@ class Home extends Component {
             </div>
 
             <div className="pane">
-              <TransactionList accountId={this.state.activeAccountId}/>
+              <TransactionList accountId={this.state.activeAccountId}
+                onAddTxn={this.onAddTxn.bind(this)}
+                onAddTransfer={this.onAddTransfer.bind(this)}
+                style={{visibility:this.state.activeAccountId > 0 ? 'visible': 'hidden'}}
+              />
             </div>
           </div>
         </div>
