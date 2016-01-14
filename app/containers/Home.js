@@ -16,7 +16,7 @@ class Home extends Component {
   constructor(props)
   {
     super(props);
-    this.state = {activeAccountId: 2};
+    this.state = {activeAccountId: 1};
   }
   loadDummy()
   {
