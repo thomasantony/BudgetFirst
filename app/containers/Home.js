@@ -49,7 +49,7 @@ class Home extends Component {
           payee: 'Random payee',
           // category_id: 2,     // TODO: Make category a derived field
           category: 'Blah blah',
-          memo: '¯\_(ツ)_/¯',
+          memo: '¯\\_(ツ)_/¯',
           amount: Math.random()*1000-500,
           cleared: true
         }
